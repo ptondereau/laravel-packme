@@ -1,6 +1,8 @@
 Laravel PackMe
 =================
 
+[![Build Status](https://travis-ci.org/ptondereau/laravel-packme.svg?branch=master)](https://travis-ci.org/ptondereau/laravel-packme)
+
 Laravel PackMe is a project starter pack which combine all basic stuff (src, tests) in order to develop a package for Laravel 5.*.
 
 Most of this repository's common practices comes from [Graham Campbell](https://github.com/GrahamCampbell). You should follow him!
