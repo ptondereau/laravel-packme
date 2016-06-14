@@ -9,6 +9,7 @@
  */
 
 namespace YourVendor\Tests\YourPackage;
+
 use YourVendor\YourPackage\DummyClass;
 
 /**
