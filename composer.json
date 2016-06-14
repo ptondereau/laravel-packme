@@ -1,7 +1,7 @@
 {
-  "name": "ptondereau/laravel-packer",
+  "name": "ptondereau/laravel-packme",
   "description": "A starter pack for developing a package with Laravel 5",
-  "keywords": ["laravel", "framework", "provider", "package", "starter", "packer"],
+  "keywords": ["laravel", "framework", "provider", "package", "starter", "packme"],
   "license": "MIT",
   "type": "project",
   "authors": [

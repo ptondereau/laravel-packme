@@ -1,12 +1,12 @@
-Laravel Packer
+Laravel PackMe
 =================
 
-Laravel Packer is a project starter pack which combine all basic stuff (src, tests) in order to develop a package for Laravel 5.*.
+Laravel PackMe is a project starter pack which combine all basic stuff (src, tests) in order to develop a package for Laravel 5.*.
 
 Most of this repository's common practices comes from [Graham Campbell](https://github.com/GrahamCampbell). You should follow him!
 
 
-Laravel Packer was created by, and is maintained by [Pierre Tondereau](https://github.com/ptondereau). It utilises my [Laravel TestBench](https://github.com/GrahamCampbell/Laravel-TestBench) package. Feel free to check out the [change log](CHANGELOG.md), [releases](https://github.com/ptondereau/laravel-packer/releases), [license](LICENSE), and [contribution guidelines](CONTRIBUTING.md).
+Laravel PackMe was created by, and is maintained by [Pierre Tondereau](https://github.com/ptondereau). It utilises my [Laravel TestBench](https://github.com/GrahamCampbell/Laravel-TestBench) package. Feel free to check out the [change log](CHANGELOG.md), [releases](https://github.com/ptondereau/laravel-packme/releases), [license](LICENSE), and [contribution guidelines](CONTRIBUTING.md).
 
 ## Installation
 
@@ -15,12 +15,12 @@ Either [PHP](https://php.net) 5.5+ or [HHVM](http://hhvm.com) 3.6+ are required.
 To get the latest version of Laravel Bitbucket, simply require the project using [Composer](https://getcomposer.org):
 
 ```bash
-$ composer create-project ptondereau/laravel-packer
+$ composer create-project ptondereau/laravel-packme
 ```
 
 ## Configuration
 
-Laravel Packer provides a configuration example.
+Laravel PackMe provides a configuration example.
 
 So you can test publishing assets with:
 
@@ -42,4 +42,4 @@ There are other classes in this package that are not documented here. This is be
 
 ## License
 
-Laravel Packer is licensed under [The MIT License (MIT)](LICENSE).
+Laravel PackMe is licensed under [The MIT License (MIT)](LICENSE).
