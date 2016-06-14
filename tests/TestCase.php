@@ -10,7 +10,6 @@
 
 namespace YourVendor\Tests\YourPackage;
 
-
 use GrahamCampbell\TestBench\AbstractPackageTestCase;
 use YourVendor\YourPackage\YourPackageServiceProvider;
 

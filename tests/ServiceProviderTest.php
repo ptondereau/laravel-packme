@@ -9,6 +9,7 @@
  */
 
 namespace YourVendor\Tests\YourPackage;
+
 use GrahamCampbell\TestBenchCore\ServiceProviderTrait;
 use YourVendor\YourPackage\DummyClass;
 

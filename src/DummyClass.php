@@ -9,6 +9,7 @@
  */
 
 namespace YourVendor\YourPackage;
+
 use Illuminate\Contracts\Config\Repository;
 
 /**
@@ -19,7 +20,7 @@ use Illuminate\Contracts\Config\Repository;
 class DummyClass
 {
     /**
-     * Foo
+     * Foo.
      *
      * @var string
      */
@@ -35,7 +36,7 @@ class DummyClass
     /**
      * Create a new dummy instance.
      *
-     * @param Repository    $config
+     * @param Repository $config
      *
      * @return void
      */
@@ -46,7 +47,7 @@ class DummyClass
 
     /**
      * Return foo.
-     * 
+     *
      * @return string
      */
     public function getFoo()
