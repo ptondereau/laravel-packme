@@ -3,11 +3,8 @@
 namespace Ptondereau\PackMe\Exception;
 
 /**
- * Class CrafterException
- *
- * @package Ptondereau\PackMe\Exception
+ * Class CrafterException.
  */
 class CrafterException extends \Exception
 {
-
 }

@@ -8,13 +8,10 @@ use Ptondereau\PackMe\Exception\CrafterException;
 use Symfony\Component\Filesystem\Filesystem;
 
 /**
- * Class PHPCrafter
- *
- * @package Ptondereau\PackMe\Crafters
+ * Class PHPCrafter.
  */
 class PHPCrafter implements Crafter
 {
-
     /**
      * Package name.
      *
@@ -69,41 +66,49 @@ class PHPCrafter implements Crafter
 
     /**
      * @param string $name
+     *
      * @return $this
      */
     public function setName($name)
     {
         $this->name = $name;
+
         return $this;
     }
 
     /**
      * @param string $author
+     *
      * @return $this
      */
     public function setAuthor($author)
     {
         $this->author = $author;
+
         return $this;
     }
 
     /**
      * @param string $destination
+     *
      * @return $this
      */
     public function setDestination($destination)
     {
         $this->destination = $destination;
+
         return $this;
     }
 
     /**
      * @param string $description
+     *
      * @return $this
      */
     public function setDescription($description)
     {
         $this->description = $description;
+
         return $this;
     }
 
@@ -116,10 +121,10 @@ class PHPCrafter implements Crafter
     {
         $this->verifyParameters();
         $this->verifyApplicationDoesntExist(
-            $directory = ($this->destination) ? getcwd() . '/' . $this->destination : getcwd()
+            $directory = ($this->destination) ? getcwd().'/'.$this->destination : getcwd()
         );
 
-        $stubPath = realpath(__DIR__ . '/../stubs');
+        $stubPath = realpath(__DIR__.'/../stubs');
 
         $this->filesystem->mirror($stubPath, $directory);
 
@@ -141,17 +146,17 @@ class PHPCrafter implements Crafter
             ->setRaw('authorEmail', $authorInfo['email'])
             ->setRaw('config', Str::slug($package));
 
-        $stubFiles = array_merge(glob($directory . '/**/*.stub'), glob($directory.'/{,.}*.stub', GLOB_BRACE));
+        $stubFiles = array_merge(glob($directory.'/**/*.stub'), glob($directory.'/{,.}*.stub', GLOB_BRACE));
 
         foreach ($stubFiles as $stub) {
             $new = pathinfo($stub);
             $this->stubber->useStub($stub);
             if ($this->isConfigFile($new['basename'])) {
-                $this->stubber->generate($new['dirname'] . '/' . Str::slug($package) . '.php');
+                $this->stubber->generate($new['dirname'].'/'.Str::slug($package).'.php');
             } elseif ($this->isServiceProviderFile($new['basename'])) {
-                $this->stubber->generate($new['dirname'] . '/' . $package . 'ServiceProvider.php');
+                $this->stubber->generate($new['dirname'].'/'.$package.'ServiceProvider.php');
             } else {
-                $this->stubber->generate($new['dirname'] . '/' . $new['filename']);
+                $this->stubber->generate($new['dirname'].'/'.$new['filename']);
             }
             $this->filesystem->remove($stub);
         }
@@ -178,7 +183,8 @@ class PHPCrafter implements Crafter
     /**
      * Verify that the application does not already exist.
      *
-     * @param  string $directory
+     * @param string $directory
+     *
      * @throws CrafterException
      */
     protected function verifyApplicationDoesntExist($directory)
@@ -192,6 +198,7 @@ class PHPCrafter implements Crafter
      * Detect if a file is the config file.
      *
      * @param $file
+     *
      * @return bool
      */
     private function isConfigFile($file)
@@ -203,6 +210,7 @@ class PHPCrafter implements Crafter
      * Detect if a file is the service provider file.
      *
      * @param $file
+     *
      * @return bool
      */
     private function isServiceProviderFile($file)
@@ -214,21 +222,21 @@ class PHPCrafter implements Crafter
      * Parse the author string.
      *
      * @private
-     * @param  string $author
+     *
+     * @param string $author
      *
      * @return array
      */
     private function parseAuthorString($author)
     {
         if (preg_match('/^(?P<name>[- \.,\p{L}\p{N}\'’]+) <(?P<email>.+?)>$/u', $author, $match)) {
-            return array(
-                'name' => trim($match['name']),
+            return [
+                'name'  => trim($match['name']),
                 'email' => $match['email'],
-            );
-
+            ];
         }
         throw new \InvalidArgumentException(
-            'Invalid author string.  Must be in the format: ' .
+            'Invalid author string.  Must be in the format: '.
             'John Smith <john@example.com>'
         );
     }
