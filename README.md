@@ -1,7 +1,7 @@
 Laravel PackMe
 =================
 
-#### Tests are the go but this tool works ;)
+#### Tests are on the go but this tool works ;)
 
 [![Build Status](https://travis-ci.org/ptondereau/laravel-packme.svg?branch=master)](https://travis-ci.org/ptondereau/laravel-packme)
 [![StyleCI](https://styleci.io/repos/61112074/shield)](https://styleci.io/repos/61112074)
