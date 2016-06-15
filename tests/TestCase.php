@@ -1,30 +1,33 @@
 <?php
-/*
- * This file is part of YourPackage.
+
+namespace Ptondereau\Tests\PackMe;
+
+/**
+ * Class TestCase
  *
- * (c) Firstname Lastname <email@email.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
+ * @package Ptondereau\Tests\PackMe
  */
-
-namespace YourVendor\Tests\YourPackage;
-
-
-use GrahamCampbell\TestBench\AbstractPackageTestCase;
-use YourVendor\YourPackage\YourPackageServiceProvider;
-
-abstract class TestCase extends AbstractPackageTestCase
+abstract class TestCase
 {
     /**
-     * Get the service provider class.
+     * Call protected/private method of a class.
      *
-     * @param \Illuminate\Contracts\Foundation\Application $app
+     * @param object &$object    Instantiated object that we will run method on.
+     * @param string $methodName Method name to call
+     * @param string|array  $parameters Array of parameters to pass into method.
      *
-     * @return string
+     * @return mixed Method return.
      */
-    protected function getServiceProviderClass($app)
+    public function invokeMethod(&$object, $methodName, $parameters)
     {
-        return YourPackageServiceProvider::class;
+        $reflection = new \ReflectionClass(get_class($object));
+        $method = $reflection->getMethod($methodName);
+        $method->setAccessible(true);
+
+        if(is_array($parameters)) {
+            return $method->invokeArgs($object, $parameters);
+        }
+        
+        return $method->invoke($object, $parameters);
     }
 }

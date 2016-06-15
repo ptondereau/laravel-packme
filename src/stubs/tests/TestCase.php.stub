@@ -1,0 +1,29 @@
+<?php
+/*
+ * This file is part of YourPackage.
+ *
+ * (c) {{ author }}
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace {{ vendor }}\Tests\{{ package }};
+
+use GrahamCampbell\TestBench\AbstractPackageTestCase;
+use {{ vendor }}\{{ package }}\YourPackageServiceProvider;
+
+abstract class TestCase extends AbstractPackageTestCase
+{
+    /**
+     * Get the service provider class.
+     *
+     * @param \Illuminate\Contracts\Foundation\Application $app
+     *
+     * @return string
+     */
+    protected function getServiceProviderClass($app)
+    {
+        return {{ package }}ServiceProvider::class;
+    }
+}
