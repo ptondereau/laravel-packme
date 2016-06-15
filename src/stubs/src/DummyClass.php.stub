@@ -2,19 +2,19 @@
 /*
  * This file is part of YourPackage.
  *
- * (c) Firstname Lastname <email@email.com>
+ * (c) {{ user }}
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace YourVendor\YourPackage;
+namespace {{ vendor }}\{{ package }};
 use Illuminate\Contracts\Config\Repository;
 
 /**
  * This is the Dummy class.
  *
- * @author Firstname Lastname <email@email.com>
+ * @author {{ user }}
  */
 class DummyClass
 {

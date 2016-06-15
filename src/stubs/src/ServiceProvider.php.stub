@@ -18,9 +18,9 @@ use Laravel\Lumen\Application as LumenApplication;
 /**
  * This is the YourPackage service provider class.
  *
- * @author Firstname Lastname <email@email.com>
+ * @author {{ user }}
  */
-class YourPackageServiceProvider extends ServiceProvider
+class {{ package }}ServiceProvider extends ServiceProvider
 {
     /**
      * Indicates if loading of the provider is deferred.
@@ -72,10 +72,10 @@ class YourPackageServiceProvider extends ServiceProvider
      */
     protected function registerDummyClass()
     {
-        $this->app->singleton('your-pacakage.dummyclass', function (Container $app) {
+        $this->app->singleton('{{ package }}.dummyclass', function (Container $app) {
             return new DummyClass($app['config']);
         });
-        $this->app->alias('your-pacakage.dummyclass', DummyClass::class);
+        $this->app->alias('{{ package }}.dummyclass', DummyClass::class);
     }
 
     /**
@@ -85,6 +85,6 @@ class YourPackageServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return ['your-pacakage.dummyclass'];
+        return ['{{ package }}.dummyclass'];
     }
 }
