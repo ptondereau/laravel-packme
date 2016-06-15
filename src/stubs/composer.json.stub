@@ -1,13 +1,13 @@
 {
-  "name": "ptondereau/laravel-packme",
-  "description": "A starter pack for developing a package with Laravel 5",
-  "keywords": ["laravel", "framework", "provider", "package", "starter", "packme"],
-  "license": "MIT",
-  "type": "project",
+  "name": "{{ name }}",
+  "description": "{{ description }}",
+  "keywords": [],
+  "license": "",
+  "type": "library",
   "authors": [
     {
-      "name": "Pierre Tondereau",
-      "email": "contact@ptonderau.io"
+      "name": "{{ authorName }}",
+      "email": "{{ authorEmail }}"
     }
   ],
   "require": {
@@ -22,18 +22,13 @@
   },
   "autoload": {
     "psr-4": {
-      "YourVendor\\YourPackage\\": "src/"
+      "{{ vendor }}\\{{ package }}\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "YourVendor\\Tests\\YourPackage\\": "tests/"
+      "{{ vendor }}\\Tests\\{{ package }}\\": "tests/"
     }
-  },
-  "scripts": {
-    "post-root-package-install": [
-      "php -r \"copy('.gitattributes.example', '.gitattributes');\""
-    ]
   },
   "config": {
     "preferred-install": "dist"

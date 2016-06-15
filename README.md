@@ -12,29 +12,19 @@ Laravel PackMe was created by, and is maintained by [Pierre Tondereau](https://g
 
 Either [PHP](https://php.net) 5.5+ or [HHVM](http://hhvm.com) 3.6+ are required.
 
-To get the latest version of Laravel Bitbucket, simply require the project using [Composer](https://getcomposer.org):
+To get the latest version of Laravel PackMe, simply require the project using [Composer](https://getcomposer.org):
 
 ```bash
 $ composer global require ptondereau/laravel-packme
 ```
 
-## Configuration
-
-Laravel PackMe provides a configuration example.
-
-So you can test publishing assets with:
-
-```bash
-$ php artisan vendor:publish --provider="YourVendor\YourPackage\YourPackageServiceProvider"
-```
-
-This will create a `config/your-packagephp` file in your app that you can modify to set your configuration. Also, make sure you check for changes to the original config file in this package between releases.
-
 ## Usage
 
-Replace all 'YourVendor' by your vendor/company name and 'YourPackage' by the name of your package. Also, some comments are dummies and you should replace it too!
+```bash
+$ vendor/bin/packme create my-package
+```
 
- Rewrite the REAMDE.md, CHANGELOG.md, CONTRIBUTING.md according to your need. Finally, delete .gitattributes.example
+This will prompt to you so question and it will create a folder my-package/ with all prepared files. Such as laravel installer. You should review composer.json, README.md and LICENSE.
 
 ##### Further Information
 

@@ -2,19 +2,20 @@
 /*
  * This file is part of YourPackage.
  *
- * (c) {{ user }}
+ * (c) {{ author }}
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
 namespace {{ vendor }}\{{ package }};
+
 use Illuminate\Contracts\Config\Repository;
 
 /**
  * This is the Dummy class.
  *
- * @author {{ user }}
+ * @author {{ author }}
  */
 class DummyClass
 {

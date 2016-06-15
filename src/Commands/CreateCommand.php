@@ -2,6 +2,9 @@
 
 namespace Ptondereau\PackMe\Commands;
 
+use ConstantNull\Backstubber\FileGenerator;
+use Ptondereau\PackMe\Crafters\Crafter;
+use Ptondereau\PackMe\Crafters\PHPCrafter;
 use Symfony\Component\Console\Helper\HelperSet;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -14,25 +17,48 @@ use Symfony\Component\Console\Output\OutputInterface;
 class CreateCommand extends BaseCommand
 {
     /**
-     * @var HelperSet
+     * Crafter.
+     *
+     * @var Crafter
      */
-    protected $helperSet;
+    protected $crafter;
 
     /**
      * CreateCommand constructor.
      *
+     * @param Crafter   $crafter
      * @param HelperSet $helperSet
      */
-    public function __construct(HelperSet $helperSet)
+    public function __construct(Crafter $crafter, HelperSet $helperSet)
     {
-        $this->helperSet = $helperSet;
+        parent::__construct($helperSet);
+        $this->crafter = $crafter;
     }
 
-    public function __invoke($dir, InputInterface $input, OutputInterface $output)
-    {
-        $package = $this->askForPackageName();
 
+    public function handle($dir, InputInterface $input, OutputInterface $output)
+    {
+        $this->input = $input;
+        $this->output = $output;
+
+        $output->writeln('<info>I need to know a little more about your future awesome laravel package...</info>');
+        $output->writeln('');
+
+        $package = $this->askForPackageName();
         $author = $this->askForAuthor();
+        $description = $this->askForDescription();
+
+        $output->writeln('');
+        $output->writeln('<info>Crafting your laravel package...</info>');
+
+        $this->crafter->setAuthor($author)
+            ->setName($package)
+            ->setDestination($dir)
+            ->setDescription($description)
+            ->craft();
+
+        $output->writeln('');
+        $output->writeln('<info>Successfully crafted!</info>');
     }
 
     /**
@@ -79,6 +105,19 @@ class CreateCommand extends BaseCommand
             },
             null,
             $author
+        );
+    }
+
+    /**
+     * @param bool|string $description
+     * @return string
+     */
+    protected function askForDescription($description = false)
+    {
+        $description = $description ?: false;
+        return $this->ask(
+            'Description [<comment>' . $description . '</comment>]: ',
+            $description
         );
     }
 
