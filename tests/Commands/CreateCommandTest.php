@@ -18,22 +18,6 @@ class CreateCommandTest extends TestCase
         $this->assertEquals('john@example.com', $author['email']);
     }
 
-    public function testParseValidUtf8AuthorString()
-    {
-        $command = new CreateCommand();
-        $author = $this->invokeMethod($command, 'parseAuthorString', 'Matti Meikäläinen <matti@example.com>');
-        $this->assertEquals('Matti Meikäläinen', $author['name']);
-        $this->assertEquals('matti@example.com', $author['email']);
-    }
-
-    public function testParseNumericAuthorString()
-    {
-        $command = new CreateCommand();
-        $author = $this->invokeMethod($command, 'parseAuthorString', 'h4x0r <h4x@example.com>');
-        $this->assertEquals('h4x0r', $author['name']);
-        $this->assertEquals('h4x@example.com', $author['email']);
-    }
-
     public function testParseEmptyAuthorString()
     {
         $command = new CreateCommand();
