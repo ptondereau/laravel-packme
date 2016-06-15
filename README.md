@@ -1,10 +1,12 @@
 Laravel PackMe
 =================
 
+#### Tests are the go but this tool works ;)
+
 [![Build Status](https://travis-ci.org/ptondereau/laravel-packme.svg?branch=master)](https://travis-ci.org/ptondereau/laravel-packme)
 [![StyleCI](https://styleci.io/repos/61112074/shield)](https://styleci.io/repos/61112074)
 
-Laravel PackMe is a project starter pack which combine all basic stuff (src, tests) in order to develop a package for Laravel 5.*.
+Laravel PackMe is a project starter pack which combine all basic stuff (src, tests) in order to develop a package for Laravel 5.*. It takes care about tests and best pratices I gathered over some cool repository. With one command line, you are ready to develop a package in good condition. It works like Laravel installer.
 
 Most of this repository's common practices comes from [Graham Campbell](https://github.com/GrahamCampbell). You should follow him!
 
@@ -24,10 +26,10 @@ $ composer global require ptondereau/laravel-packme
 ## Usage
 
 ```bash
-$ vendor/bin/packme create my-package
+$ packme create my-package
 ```
 
-This will prompt to you so question and it will create a folder my-package/ with all prepared files. Such as laravel installer. You should review composer.json, README.md and LICENSE.
+This will prompt to you so question and it will create a folder `my-package/` with all prepared files. Such as laravel installer. You should review `composer.json`, `README.md` and `LICENSE`.
 
 ##### Further Information
 
