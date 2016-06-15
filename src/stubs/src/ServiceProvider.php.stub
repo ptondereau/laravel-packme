@@ -28,7 +28,7 @@ class {{ package }}ServiceProvider extends ServiceProvider
      * @var bool
      */
     protected $defer = true;
-    
+
     /**
      * Boot the service provider.
      *

@@ -8,7 +8,11 @@
  * file that was distributed with this source code.
  */
 
+<<<<<<< HEAD:src/stubs/src/DummyClass.php.stub
 namespace {{ vendor }}\{{ package }};
+=======
+namespace YourVendor\YourPackage;
+>>>>>>> aca9c83f04fc0915dd13102798ad753d686b60f7:src/DummyClass.php
 
 use Illuminate\Contracts\Config\Repository;
 
@@ -20,7 +24,7 @@ use Illuminate\Contracts\Config\Repository;
 class DummyClass
 {
     /**
-     * Foo
+     * Foo.
      *
      * @var string
      */
@@ -36,7 +40,7 @@ class DummyClass
     /**
      * Create a new dummy instance.
      *
-     * @param Repository    $config
+     * @param Repository $config
      *
      * @return void
      */
@@ -47,7 +51,7 @@ class DummyClass
 
     /**
      * Return foo.
-     * 
+     *
      * @return string
      */
     public function getFoo()
