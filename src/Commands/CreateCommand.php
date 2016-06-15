@@ -2,17 +2,13 @@
 
 namespace Ptondereau\PackMe\Commands;
 
-use ConstantNull\Backstubber\FileGenerator;
 use Ptondereau\PackMe\Crafters\Crafter;
-use Ptondereau\PackMe\Crafters\PHPCrafter;
 use Symfony\Component\Console\Helper\HelperSet;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Class CreateCommand
- *
- * @package Ptondereau\PackMe\Commands
+ * Class CreateCommand.
  */
 class CreateCommand extends BaseCommand
 {
@@ -34,7 +30,6 @@ class CreateCommand extends BaseCommand
         parent::__construct($helperSet);
         $this->crafter = $crafter;
     }
-
 
     public function handle($dir, InputInterface $input, OutputInterface $output)
     {
@@ -63,21 +58,23 @@ class CreateCommand extends BaseCommand
 
     /**
      * @param string $package
+     *
      * @return string
      */
     protected function askForPackageName($package = 'vendor/package')
     {
         return $this->askAndValidate(
-            'Package name (<vendor>/<name>) [<comment>' . $package . '</comment>]: ',
+            'Package name (<vendor>/<name>) [<comment>'.$package.'</comment>]: ',
             function ($value) use ($package) {
                 if (null === $value) {
                     return $package;
                 }
-                if (! preg_match('{^[a-z0-9_.-]+/[a-z0-9_.-]+$}', $value)) {
+                if (!preg_match('{^[a-z0-9_.-]+/[a-z0-9_.-]+$}', $value)) {
                     throw new \InvalidArgumentException(
-                        'The package name ' . $value . ' is invalid, it should be lowercase and have a vendor name, a forward slash, and a package name, matching: [a-z0-9_.-]+/[a-z0-9_.-]+'
+                        'The package name '.$value.' is invalid, it should be lowercase and have a vendor name, a forward slash, and a package name, matching: [a-z0-9_.-]+/[a-z0-9_.-]+'
                     );
                 }
+
                 return $value;
             },
             null,
@@ -87,13 +84,15 @@ class CreateCommand extends BaseCommand
 
     /**
      * @param string $author
+     *
      * @return string
      */
     protected function askForAuthor($author = 'Author Name <author@domain.com>')
     {
         $self = $this;
+
         return $this->askAndValidate(
-            'Author [<comment>' . $author . '</comment>]: ',
+            'Author [<comment>'.$author.'</comment>]: ',
             function ($value) use ($self, $author) {
                 if (null === $value) {
                     return $author;
@@ -101,6 +100,7 @@ class CreateCommand extends BaseCommand
 
                 $value = $value ?: $author;
                 $author = $self->parseAuthorString($value);
+
                 return sprintf('%s <%s>', $author['name'], $author['email']);
             },
             null,
@@ -110,13 +110,15 @@ class CreateCommand extends BaseCommand
 
     /**
      * @param bool|string $description
+     *
      * @return string
      */
     protected function askForDescription($description = false)
     {
         $description = $description ?: false;
+
         return $this->ask(
-            'Description [<comment>' . $description . '</comment>]: ',
+            'Description [<comment>'.$description.'</comment>]: ',
             $description
         );
     }
@@ -125,7 +127,8 @@ class CreateCommand extends BaseCommand
      * Parse the author string.
      *
      * @private
-     * @param  string $author
+     *
+     * @param string $author
      *
      * @return array
      */
@@ -133,14 +136,14 @@ class CreateCommand extends BaseCommand
     {
         if (preg_match('/^(?P<name>[- \.,\p{L}\p{N}\'’]+) <(?P<email>.+?)>$/u', $author, $match)) {
             if ($this->isValidEmail($match['email'])) {
-                return array(
-                    'name' => trim($match['name']),
+                return [
+                    'name'  => trim($match['name']),
                     'email' => $match['email'],
-                );
+                ];
             }
         }
         throw new \InvalidArgumentException(
-            'Invalid author string.  Must be in the format: ' .
+            'Invalid author string.  Must be in the format: '.
             'John Smith <john@example.com>'
         );
     }
@@ -155,13 +158,14 @@ class CreateCommand extends BaseCommand
     private function isValidEmail($email)
     {
         // assume it's valid if we can't validate it
-        if (! function_exists('filter_var')) {
+        if (!function_exists('filter_var')) {
             return true;
         }
         // php <5.3.3 has a very broken email validator, so bypass checks
         if (PHP_VERSION_ID < 50303) {
             return true;
         }
+
         return false !== filter_var($email, FILTER_VALIDATE_EMAIL);
     }
 }

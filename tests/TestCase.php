@@ -3,9 +3,7 @@
 namespace Ptondereau\Tests\PackMe;
 
 /**
- * Class TestCase
- *
- * @package Ptondereau\Tests\PackMe
+ * Class TestCase.
  */
 abstract class TestCase
 {
