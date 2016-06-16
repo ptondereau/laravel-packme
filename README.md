@@ -2,6 +2,7 @@ Laravel PackMe
 =================
 
 [![Build Status](https://travis-ci.org/ptondereau/laravel-packme.svg?branch=master)](https://travis-ci.org/ptondereau/laravel-packme)
+[![Code Coverage](https://scrutinizer-ci.com/g/ptondereau/laravel-packme/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/ptondereau/laravel-packme/?branch=master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/ptondereau/laravel-packme/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/ptondereau/laravel-packme/?branch=master)
 [![StyleCI](https://styleci.io/repos/61112074/shield)](https://styleci.io/repos/61112074)
 
