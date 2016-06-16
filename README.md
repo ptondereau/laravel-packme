@@ -27,9 +27,12 @@ $ composer global require ptondereau/laravel-packme
 
 ```bash
 $ packme create my-package
+$ cd my-package/
+$ composer install
 ```
 
 This will prompt to you so question and it will create a folder `my-package/` with all prepared files. Such as laravel installer. You should review `composer.json`, `README.md` and `LICENSE`.
+
 
 ##### Further Information
 
