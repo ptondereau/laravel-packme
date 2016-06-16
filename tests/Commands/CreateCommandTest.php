@@ -39,17 +39,23 @@ class CreateCommandTest extends TestCase
         $this->assertEquals('john@example.com', $author['email']);
     }
 
+    /**
+     * @expectedException InvalidArgumentException
+     * @expectedExceptionMessage Invalid author string.  Must be in the format: John Smith <john@example.com>
+     */
     public function testParseEmptyAuthorString()
     {
         $command = new CreateCommand($this->crafter, $this->helperSet);
-        $this->expectException('InvalidArgumentException');
         $this->invokeMethod($command, 'parseAuthorString', '');
     }
 
+    /**
+     * @expectedException InvalidArgumentException
+     * @expectedExceptionMessage Invalid author string.  Must be in the format: John Smith <john@example.com>
+     */
     public function testParseAuthorStringWithInvalidEmail()
     {
         $command = new CreateCommand($this->crafter, $this->helperSet);
-        $this->expectException('InvalidArgumentException');
         $this->invokeMethod($command, 'parseAuthorString', 'John Smith <john>');
     }
 }
