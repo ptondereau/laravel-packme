@@ -121,10 +121,10 @@ class PHPCrafter implements Crafter
     {
         $this->verifyParameters();
         $this->verifyApplicationDoesntExist(
-            $directory = ($this->destination) ? getcwd().'/'.$this->destination : getcwd()
+            $directory = ($this->destination) ? getcwd() . '/' . $this->destination : getcwd()
         );
 
-        $stubPath = realpath(__DIR__.'/../stubs');
+        $stubPath = realpath(__DIR__ . '/../stubs');
 
         $this->filesystem->mirror($stubPath, $directory);
 
@@ -146,17 +146,24 @@ class PHPCrafter implements Crafter
             ->setRaw('authorEmail', $authorInfo['email'])
             ->setRaw('config', Str::slug($package));
 
-        $stubFiles = array_merge(glob($directory.'/**/*.stub'), glob($directory.'/{,.}*.stub', GLOB_BRACE));
-
+        // array of all stub files
+        $stubFiles = new \RecursiveIteratorIterator(
+            new \RecursiveDirectoryIterator(
+                $directory,
+                \RecursiveDirectoryIterator::SKIP_DOTS
+            )
+        );
+        
+        // find and replace
         foreach ($stubFiles as $stub) {
             $new = pathinfo($stub);
             $this->stubber->useStub($stub);
             if ($this->isConfigFile($new['basename'])) {
-                $this->stubber->generate($new['dirname'].'/'.Str::slug($package).'.php');
+                $this->stubber->generate($new['dirname'] . '/' . Str::slug($package) . '.php');
             } elseif ($this->isServiceProviderFile($new['basename'])) {
-                $this->stubber->generate($new['dirname'].'/'.$package.'ServiceProvider.php');
+                $this->stubber->generate($new['dirname'] . '/' . $package . 'ServiceProvider.php');
             } else {
-                $this->stubber->generate($new['dirname'].'/'.$new['filename']);
+                $this->stubber->generate($new['dirname'] . '/' . $new['filename']);
             }
             $this->filesystem->remove($stub);
         }
@@ -231,12 +238,12 @@ class PHPCrafter implements Crafter
     {
         if (preg_match('/^(?P<name>[- \.,\p{L}\p{N}\'’]+) <(?P<email>.+?)>$/u', $author, $match)) {
             return [
-                'name'  => trim($match['name']),
+                'name' => trim($match['name']),
                 'email' => $match['email'],
             ];
         }
         throw new \InvalidArgumentException(
-            'Invalid author string.  Must be in the format: '.
+            'Invalid author string.  Must be in the format: ' .
             'John Smith <john@example.com>'
         );
     }

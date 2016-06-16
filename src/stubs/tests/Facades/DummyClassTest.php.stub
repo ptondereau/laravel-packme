@@ -3,7 +3,6 @@
 namespace {{ vendor }}\Tests\{{ package }}\Facades;
 
 use GrahamCampbell\TestBenchCore\FacadeTrait;
-use {{ vendor }}\{{ package }}\Facades\DummyClass;
 use {{ vendor }}\Tests\{{ package }}\TestCase;
 
 /**
