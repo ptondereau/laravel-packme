@@ -2,6 +2,7 @@ Laravel PackMe
 =================
 
 [![Build Status](https://travis-ci.org/ptondereau/laravel-packme.svg?branch=master)](https://travis-ci.org/ptondereau/laravel-packme)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/ptondereau/laravel-packme/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/ptondereau/laravel-packme/?branch=master)
 [![StyleCI](https://styleci.io/repos/61112074/shield)](https://styleci.io/repos/61112074)
 
 Laravel PackMe is a project starter pack which combine all basic stuff (src, tests) in order to develop a package for Laravel 5.*. It takes care about tests and best pratices I gathered over some cool repository. With one command line, you are ready to develop a package in good condition. It works like Laravel installer.
