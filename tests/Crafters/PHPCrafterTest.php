@@ -53,7 +53,7 @@ class PHPCrafterTest extends TestCase
     public function testCrafting()
     {
         if (is_dir(__DIR__.'/../output/test')) {
-           $this->removeOutput();
+            $this->removeOutput();
         }
 
         $crafter = new PHPCrafter($this->stubber, $this->fs);
