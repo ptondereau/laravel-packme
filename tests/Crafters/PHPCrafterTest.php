@@ -77,8 +77,8 @@ class PHPCrafterTest extends TestCase
         $this->assertFileExists($outputpath.'/.gitattributes');
         $this->assertFileExists($outputpath.'/.gitignore');
         $this->assertFileExists($outputpath.'/.travis.yml');
-        $this->assertFileExists($outputpath.'/CHANGELOG.MD');
-        $this->assertFileExists($outputpath.'/CONTRIBUTING.MD');
+        $this->assertFileExists($outputpath.'/CHANGELOG.md');
+        $this->assertFileExists($outputpath.'/CONTRIBUTING.md');
         $this->assertFileExists($outputpath.'/LICENSE');
         $this->assertFileExists($outputpath.'/README.md');
         $this->assertFileExists($outputpath.'/composer.json');
