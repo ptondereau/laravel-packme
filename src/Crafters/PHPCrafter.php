@@ -121,7 +121,7 @@ class PHPCrafter implements Crafter
     {
         $this->verifyParameters();
         $this->verifyApplicationDoesntExist(
-            $directory = ($this->destination) ? getcwd() . '/' . $this->destination : getcwd()
+            $directory = ($this->destination) ? getcwd().'/'.$this->destination : getcwd()
         );
 
         $packageInfo = explode('/', $this->name);
@@ -152,17 +152,17 @@ class PHPCrafter implements Crafter
                 \RecursiveDirectoryIterator::SKIP_DOTS
             )
         );
-        
+
         // find and replace
         foreach ($stubFiles as $stub) {
             $new = pathinfo($stub);
             $this->stubber->useStub($stub);
             if ($this->isConfigFile($new['basename'])) {
-                $this->stubber->generate($new['dirname'] . '/' . Str::slug($package) . '.php');
+                $this->stubber->generate($new['dirname'].'/'.Str::slug($package).'.php');
             } elseif ($this->isServiceProviderFile($new['basename'])) {
-                $this->stubber->generate($new['dirname'] . '/' . $package . 'ServiceProvider.php');
+                $this->stubber->generate($new['dirname'].'/'.$package.'ServiceProvider.php');
             } else {
-                $this->stubber->generate($new['dirname'] . '/' . $new['filename']);
+                $this->stubber->generate($new['dirname'].'/'.$new['filename']);
             }
             $this->filesystem->remove($stub);
         }
@@ -237,12 +237,12 @@ class PHPCrafter implements Crafter
     {
         if (preg_match('/^(?P<name>[- \.,\p{L}\p{N}\'’]+) <(?P<email>.+?)>$/u', $author, $match)) {
             return [
-                'name' => trim($match['name']),
+                'name'  => trim($match['name']),
                 'email' => $match['email'],
             ];
         }
         throw new \InvalidArgumentException(
-            'Invalid author string.  Must be in the format: ' .
+            'Invalid author string.  Must be in the format: '.
             'John Smith <john@example.com>'
         );
     }
