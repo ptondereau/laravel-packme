@@ -9,7 +9,7 @@ use Ptondereau\Tests\PackMe\TestCase;
 use Symfony\Component\Filesystem\Filesystem;
 
 /**
- * Class PHPCrafterTest
+ * Class PHPCrafterTest.
  */
 class PHPCrafterTest extends TestCase
 {
@@ -61,25 +61,25 @@ class PHPCrafterTest extends TestCase
 
         $crafter->craft();
 
-        $outputpath = realpath(__DIR__ . '/../output/test');
+        $outputpath = realpath(__DIR__.'/../output/test');
 
-        $this->assertFileExists($outputpath . '/config/package.php');
-        $this->assertFileExists($outputpath . '/src/PackageServiceProvider.php');
-        $this->assertFileExists($outputpath . '/src/DummyClass.php');
-        $this->assertFileExists($outputpath . '/src/Facades/DummyClass.php');
-        $this->assertFileExists($outputpath . '/tests/TestCase.php');
-        $this->assertFileExists($outputpath . '/tests/ServiceProviderTest.php');
-        $this->assertFileExists($outputpath . '/tests/DummyClassTest.php');
-        $this->assertFileExists($outputpath . '/tests/Facades/DummyClassTest.php');
-        $this->assertFileExists($outputpath . '/.gitattributes');
-        $this->assertFileExists($outputpath . '/.gitignore');
-        $this->assertFileExists($outputpath . '/.travis.yml');
-        $this->assertFileExists($outputpath . '/CHANGELOG.MD');
-        $this->assertFileExists($outputpath . '/CONTRIBUTING.MD');
-        $this->assertFileExists($outputpath . '/LICENSE');
-        $this->assertFileExists($outputpath . '/README.md');
-        $this->assertFileExists($outputpath . '/composer.json');
-        $this->assertFileExists($outputpath . '/phpunit.xml.dist');
+        $this->assertFileExists($outputpath.'/config/package.php');
+        $this->assertFileExists($outputpath.'/src/PackageServiceProvider.php');
+        $this->assertFileExists($outputpath.'/src/DummyClass.php');
+        $this->assertFileExists($outputpath.'/src/Facades/DummyClass.php');
+        $this->assertFileExists($outputpath.'/tests/TestCase.php');
+        $this->assertFileExists($outputpath.'/tests/ServiceProviderTest.php');
+        $this->assertFileExists($outputpath.'/tests/DummyClassTest.php');
+        $this->assertFileExists($outputpath.'/tests/Facades/DummyClassTest.php');
+        $this->assertFileExists($outputpath.'/.gitattributes');
+        $this->assertFileExists($outputpath.'/.gitignore');
+        $this->assertFileExists($outputpath.'/.travis.yml');
+        $this->assertFileExists($outputpath.'/CHANGELOG.MD');
+        $this->assertFileExists($outputpath.'/CONTRIBUTING.MD');
+        $this->assertFileExists($outputpath.'/LICENSE');
+        $this->assertFileExists($outputpath.'/README.md');
+        $this->assertFileExists($outputpath.'/composer.json');
+        $this->assertFileExists($outputpath.'/phpunit.xml.dist');
 
         $this->removeOutput();
     }
@@ -164,7 +164,7 @@ class PHPCrafterTest extends TestCase
     protected function removeOutput()
     {
         $it = new \RecursiveDirectoryIterator(
-            realpath(__DIR__ . '/../output/test'),
+            realpath(__DIR__.'/../output/test'),
             \RecursiveDirectoryIterator::SKIP_DOTS
         );
         $files = new \RecursiveIteratorIterator($it, \RecursiveIteratorIterator::CHILD_FIRST);
@@ -175,6 +175,6 @@ class PHPCrafterTest extends TestCase
                 unlink($file->getRealPath());
             }
         }
-        rmdir(realpath(__DIR__ . '/../output/test'));
+        rmdir(realpath(__DIR__.'/../output/test'));
     }
 }

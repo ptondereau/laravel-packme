@@ -129,7 +129,7 @@ class PHPCrafter implements Crafter
         $package = Str::studly($packageInfo[1]);
         $authorInfo = $this->parseAuthorString($this->author);
 
-        $stubPath = realpath(__DIR__ . '/../stubs');
+        $stubPath = realpath(__DIR__.'/../stubs');
         $this->filesystem->mirror($stubPath, $directory);
 
         // set delimiters
