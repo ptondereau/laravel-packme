@@ -5,9 +5,7 @@ namespace Ptondereau\Tests\PackMe\Commands;
 use Ptondereau\PackMe\Commands\CreateCommand;
 use Ptondereau\PackMe\Crafters\PHPCrafter;
 use Ptondereau\Tests\PackMe\TestCase;
-use Silly\Edition\PhpDi\Application;
 use Symfony\Component\Console\Helper\HelperSet;
-use Symfony\Component\Console\Helper\QuestionHelper;
 
 /**
  * Class CreateCommandTest.
