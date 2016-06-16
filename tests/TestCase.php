@@ -5,7 +5,7 @@ namespace Ptondereau\Tests\PackMe;
 /**
  * Class TestCase.
  */
-abstract class TestCase
+abstract class TestCase extends \PHPUnit_Framework_TestCase
 {
     /**
      * Call protected/private method of a class.

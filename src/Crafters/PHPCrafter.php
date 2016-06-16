@@ -124,14 +124,13 @@ class PHPCrafter implements Crafter
             $directory = ($this->destination) ? getcwd() . '/' . $this->destination : getcwd()
         );
 
-        $stubPath = realpath(__DIR__ . '/../stubs');
-
-        $this->filesystem->mirror($stubPath, $directory);
-
         $packageInfo = explode('/', $this->name);
         $vendor = Str::studly($packageInfo[0]);
         $package = Str::studly($packageInfo[1]);
         $authorInfo = $this->parseAuthorString($this->author);
+
+        $stubPath = realpath(__DIR__ . '/../stubs');
+        $this->filesystem->mirror($stubPath, $directory);
 
         // set delimiters
         $this->stubber->withDelimiters('{{', '}}');
