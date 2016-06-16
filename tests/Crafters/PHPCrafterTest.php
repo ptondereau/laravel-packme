@@ -164,7 +164,7 @@ class PHPCrafterTest extends TestCase
     protected function removeOutput()
     {
         $it = new \RecursiveDirectoryIterator(
-            realpath(__DIR__.'/../output/test'),
+            __DIR__.'/../output/test',
             \RecursiveDirectoryIterator::SKIP_DOTS
         );
         $files = new \RecursiveIteratorIterator($it, \RecursiveIteratorIterator::CHILD_FIRST);
@@ -175,6 +175,6 @@ class PHPCrafterTest extends TestCase
                 unlink($file->getRealPath());
             }
         }
-        rmdir(realpath(__DIR__.'/../output/test'));
+        rmdir(__DIR__.'/../output/test');
     }
 }
