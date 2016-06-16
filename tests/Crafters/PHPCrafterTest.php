@@ -147,7 +147,10 @@ class PHPCrafterTest extends TestCase
      */
     public function testExceptionWhenFolderAlreadyExists()
     {
-        mkdir(__DIR__.'/../output/test/', 0777);
+        if (! is_dir(__DIR__.'/../output/test/')) {
+            mkdir(__DIR__ . '/../output/test/', 0777);
+        }
+
         $crafter = new PHPCrafter($this->stubber, $this->fs);
         $crafter->setDescription('test');
         $crafter->setAuthor('John Smith <john@smith.com>');
