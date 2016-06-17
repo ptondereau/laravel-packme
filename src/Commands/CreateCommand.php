@@ -69,7 +69,7 @@ class CreateCommand extends AbstractBaseCommand
                 if (null === $value) {
                     return $package;
                 }
-                if (! preg_match('{^[a-z0-9_.-]+/[a-z0-9_.-]+$}', $value)) {
+                if (!preg_match('{^[a-z0-9_.-]+/[a-z0-9_.-]+$}', $value)) {
                     throw new \InvalidArgumentException(
                         'The package name '.$value.' is invalid, it should be lowercase and have a vendor name, a forward slash, and a package name, matching: [a-z0-9_.-]+/[a-z0-9_.-]+'
                     );
@@ -137,7 +137,7 @@ class CreateCommand extends AbstractBaseCommand
         if (preg_match('/^(?P<name>[- \.,\p{L}\p{N}\'’]+) <(?P<email>.+?)>$/u', $author, $match)) {
             if ($this->isValidEmail($match['email'])) {
                 return [
-                    'name' => trim($match['name']),
+                    'name'  => trim($match['name']),
                     'email' => $match['email'],
                 ];
             }
@@ -158,7 +158,7 @@ class CreateCommand extends AbstractBaseCommand
     private function isValidEmail($email)
     {
         // assume it's valid if we can't validate it
-        if (! function_exists('filter_var')) {
+        if (!function_exists('filter_var')) {
             return true;
         }
         // php <5.3.3 has a very broken email validator, so bypass checks
