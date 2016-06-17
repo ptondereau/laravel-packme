@@ -10,7 +10,7 @@ use Symfony\Component\Filesystem\Filesystem;
 /**
  * Class PHPCrafter.
  */
-class PHPCrafter implements Crafter
+class PHPCrafter implements CrafterInterface
 {
     /**
      * Package name.
@@ -77,11 +77,10 @@ class PHPCrafter implements Crafter
     }
 
     /**
-     * @param string $author
-     *
+     * @param array $author
      * @return $this
      */
-    public function setAuthor($author)
+    public function setAuthor(array $author)
     {
         $this->author = $author;
 
@@ -127,7 +126,6 @@ class PHPCrafter implements Crafter
         $packageInfo = explode('/', $this->name);
         $vendor = Str::studly($packageInfo[0]);
         $package = Str::studly($packageInfo[1]);
-        $authorInfo = $this->parseAuthorString($this->author);
 
         $stubPath = realpath(__DIR__.'/../stubs');
         $this->filesystem->mirror($stubPath, $directory);
@@ -136,13 +134,13 @@ class PHPCrafter implements Crafter
         $this->stubber->withDelimiters('{{', '}}');
 
         // set keywords
-        $this->stubber->setRaw('author', $this->author)
+        $this->stubber->setRaw('author', $this->author['name'].' <'.$this->author['email'].'>')
             ->setRaw('name', $this->name)
             ->setRaw('description', $this->description ?: '')
             ->setRaw('vendor', $vendor)
             ->setRaw('package', $package)
-            ->setRaw('authorName', $authorInfo['name'])
-            ->setRaw('authorEmail', $authorInfo['email'])
+            ->setRaw('authorName', $this->author['name'])
+            ->setRaw('authorEmail', $this->author['email'])
             ->setRaw('config', Str::slug($package));
 
         // array of all stub files
@@ -222,28 +220,5 @@ class PHPCrafter implements Crafter
     private function isServiceProviderFile($file)
     {
         return $file === 'ServiceProvider.php.stub';
-    }
-
-    /**
-     * Parse the author string.
-     *
-     * @private
-     *
-     * @param string $author
-     *
-     * @return array
-     */
-    private function parseAuthorString($author)
-    {
-        if (preg_match('/^(?P<name>[- \.,\p{L}\p{N}\'’]+) <(?P<email>.+?)>$/u', $author, $match)) {
-            return [
-                'name'  => trim($match['name']),
-                'email' => $match['email'],
-            ];
-        }
-        throw new \InvalidArgumentException(
-            'Invalid author string.  Must be in the format: '.
-            'John Smith <john@example.com>'
-        );
     }
 }

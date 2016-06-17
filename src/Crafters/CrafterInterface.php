@@ -5,7 +5,7 @@ namespace Ptondereau\PackMe\Crafters;
 /**
  * Interface Crafter.
  */
-interface Crafter
+interface CrafterInterface
 {
     /**
      * Craft the application with parameters.
@@ -22,11 +22,11 @@ interface Crafter
     public function setName($name);
 
     /**
-     * @param string $author
+     * @param array $author
      *
      * @return $this
      */
-    public function setAuthor($author);
+    public function setAuthor(array $author);
 
     /**
      * @param string $destination

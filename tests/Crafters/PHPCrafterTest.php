@@ -3,7 +3,7 @@
 namespace Ptondereau\Tests\PackMe\Crafters;
 
 use ConstantNull\Backstubber\FileGenerator;
-use Ptondereau\PackMe\Crafters\Crafter;
+use Ptondereau\PackMe\Crafters\CrafterInterface;
 use Ptondereau\PackMe\Crafters\PHPCrafter;
 use Ptondereau\Tests\PackMe\TestCase;
 use Symfony\Component\Filesystem\Filesystem;
@@ -35,18 +35,18 @@ class PHPCrafterTest extends TestCase
     public function testConstruct()
     {
         $crafter = new PHPCrafter($this->stubber, $this->fs);
-        $this->assertInstanceOf(Crafter::class, $crafter);
+        $this->assertInstanceOf(CrafterInterface::class, $crafter);
     }
 
     public function testSetter()
     {
         $crafter = new PHPCrafter($this->stubber, $this->fs);
         $crafter->setDescription('test');
-        $crafter->setAuthor('John Smith <john@smith.com>');
+        $crafter->setAuthor(['name' => 'John Smith', 'email' => 'john@smith.com']);
         $crafter->setName('vendor/package');
 
         $this->assertAttributeSame('test', 'description', $crafter);
-        $this->assertAttributeSame('John Smith <john@smith.com>', 'author', $crafter);
+        $this->assertAttributeSame(['name' => 'John Smith', 'email' => 'john@smith.com'], 'author', $crafter);
         $this->assertAttributeSame('vendor/package', 'name', $crafter);
     }
 
@@ -58,7 +58,7 @@ class PHPCrafterTest extends TestCase
 
         $crafter = new PHPCrafter($this->stubber, $this->fs);
         $crafter->setDescription('test');
-        $crafter->setAuthor('John Smith <john@smith.com>');
+        $crafter->setAuthor(['name' => 'John Smith', 'email' => 'john@smith.com']);
         $crafter->setName('vendor/package');
         $crafter->setDestination('tests/output/test');
 
@@ -120,23 +120,8 @@ class PHPCrafterTest extends TestCase
     {
         $crafter = new PHPCrafter($this->stubber, $this->fs);
         $crafter->setDescription('test');
-        $crafter->setAuthor('John Smith <john@smith.com>');
+        $crafter->setAuthor(['name' => 'John Smith', 'email' => 'john@smith.com']);
         $crafter->setName('vendor/package');
-
-        $crafter->craft();
-    }
-
-    /**
-     * @expectedException  \InvalidArgumentException
-     * @expectedExceptionMessage Invalid author string.  Must be in the format: John Smith <john@example.com>
-     */
-    public function testExceptionWhenAuthorEmailIsWrong()
-    {
-        $crafter = new PHPCrafter($this->stubber, $this->fs);
-        $crafter->setDescription('test');
-        $crafter->setAuthor('John Smith');
-        $crafter->setName('vendor/package');
-        $crafter->setDestination('output/test');
 
         $crafter->craft();
     }
@@ -153,7 +138,7 @@ class PHPCrafterTest extends TestCase
 
         $crafter = new PHPCrafter($this->stubber, $this->fs);
         $crafter->setDescription('test');
-        $crafter->setAuthor('John Smith <john@smith.com>');
+        $crafter->setAuthor(['name' => 'John Smith', 'email' => 'john@smith.com']);
         $crafter->setName('vendor/package');
         $crafter->setDestination('tests/output/test');
 

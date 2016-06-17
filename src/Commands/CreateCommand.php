@@ -2,7 +2,7 @@
 
 namespace Ptondereau\PackMe\Commands;
 
-use Ptondereau\PackMe\Crafters\Crafter;
+use Ptondereau\PackMe\Crafters\CrafterInterface;
 use Symfony\Component\Console\Helper\HelperSet;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -10,22 +10,22 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * Class CreateCommand.
  */
-class CreateCommand extends BaseCommand
+class CreateCommand extends AbstractBaseCommand
 {
     /**
      * Crafter.
      *
-     * @var Crafter
+     * @var CrafterInterface
      */
     protected $crafter;
 
     /**
      * CreateCommand constructor.
      *
-     * @param Crafter   $crafter
-     * @param HelperSet $helperSet
+     * @param CrafterInterface $crafter
+     * @param HelperSet        $helperSet
      */
-    public function __construct(Crafter $crafter, HelperSet $helperSet)
+    public function __construct(CrafterInterface $crafter, HelperSet $helperSet)
     {
         parent::__construct($helperSet);
         $this->crafter = $crafter;
@@ -46,7 +46,7 @@ class CreateCommand extends BaseCommand
         $output->writeln('');
         $output->writeln('<info>Crafting your laravel package...</info>');
 
-        $this->crafter->setAuthor($author)
+        $this->crafter->setAuthor($this->parseAuthorString($author))
             ->setName($package)
             ->setDestination($dir)
             ->setDescription($description)
@@ -69,7 +69,7 @@ class CreateCommand extends BaseCommand
                 if (null === $value) {
                     return $package;
                 }
-                if (!preg_match('{^[a-z0-9_.-]+/[a-z0-9_.-]+$}', $value)) {
+                if (! preg_match('{^[a-z0-9_.-]+/[a-z0-9_.-]+$}', $value)) {
                     throw new \InvalidArgumentException(
                         'The package name '.$value.' is invalid, it should be lowercase and have a vendor name, a forward slash, and a package name, matching: [a-z0-9_.-]+/[a-z0-9_.-]+'
                     );
@@ -99,9 +99,9 @@ class CreateCommand extends BaseCommand
                 }
 
                 $value = $value ?: $author;
-                $author = $self->parseAuthorString($value);
+                $parsed = $self->parseAuthorString($value);
 
-                return sprintf('%s <%s>', $author['name'], $author['email']);
+                return sprintf('%s <%s>', $parsed['name'], $parsed['email']);
             },
             null,
             $author
@@ -137,7 +137,7 @@ class CreateCommand extends BaseCommand
         if (preg_match('/^(?P<name>[- \.,\p{L}\p{N}\'’]+) <(?P<email>.+?)>$/u', $author, $match)) {
             if ($this->isValidEmail($match['email'])) {
                 return [
-                    'name'  => trim($match['name']),
+                    'name' => trim($match['name']),
                     'email' => $match['email'],
                 ];
             }
@@ -158,7 +158,7 @@ class CreateCommand extends BaseCommand
     private function isValidEmail($email)
     {
         // assume it's valid if we can't validate it
-        if (!function_exists('filter_var')) {
+        if (! function_exists('filter_var')) {
             return true;
         }
         // php <5.3.3 has a very broken email validator, so bypass checks

@@ -12,7 +12,7 @@ use Symfony\Component\Console\Question\Question;
 /**
  * Class BaseCommand.
  */
-abstract class BaseCommand
+abstract class AbstractBaseCommand
 {
     /**
      * @var InputInterface
