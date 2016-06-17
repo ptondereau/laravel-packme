@@ -2,6 +2,7 @@
 
 namespace Ptondereau\Tests\PackMe\Commands;
 
+use Ptondereau\PackMe\Commands\AbstractBaseCommand;
 use Ptondereau\PackMe\Commands\CreateCommand;
 use Ptondereau\PackMe\Crafters\PHPCrafter;
 use Ptondereau\Tests\PackMe\TestCase;
@@ -40,7 +41,7 @@ class CreateCommandTest extends TestCase
     }
 
     /**
-     * @expectedException InvalidArgumentException
+     * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage Invalid author string.  Must be in the format: John Smith <john@example.com>
      */
     public function testParseEmptyAuthorString()
@@ -50,7 +51,7 @@ class CreateCommandTest extends TestCase
     }
 
     /**
-     * @expectedException InvalidArgumentException
+     * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage Invalid author string.  Must be in the format: John Smith <john@example.com>
      */
     public function testParseAuthorStringWithInvalidEmail()
