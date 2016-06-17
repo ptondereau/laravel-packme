@@ -2,7 +2,6 @@
 
 namespace Ptondereau\Tests\PackMe\Commands;
 
-use Ptondereau\PackMe\Commands\AbstractBaseCommand;
 use Ptondereau\PackMe\Commands\CreateCommand;
 use Ptondereau\PackMe\Crafters\PHPCrafter;
 use Ptondereau\Tests\PackMe\TestCase;
