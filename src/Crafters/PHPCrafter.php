@@ -78,6 +78,7 @@ class PHPCrafter implements CrafterInterface
 
     /**
      * @param array $author
+     *
      * @return $this
      */
     public function setAuthor(array $author)
