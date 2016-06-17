@@ -11,7 +11,7 @@ Laravel PackMe is a project starter pack which combine all basic stuff (src, tes
 Most of this repository's common practices comes from [Graham Campbell](https://github.com/GrahamCampbell). You should follow him!
 
 
-Laravel PackMe was created by, and is maintained by [Pierre Tondereau](https://github.com/ptondereau). It utilises my [Laravel TestBench](https://github.com/GrahamCampbell/Laravel-TestBench) package. Feel free to check out the [change log](CHANGELOG.md), [releases](https://github.com/ptondereau/laravel-packme/releases), [license](LICENSE), and [contribution guidelines](CONTRIBUTING.md).
+Laravel PackMe was created by, and is maintained by [Pierre Tondereau](https://github.com/ptondereau). It utilises [Laravel TestBench](https://github.com/GrahamCampbell/Laravel-TestBench) package. Feel free to check out the [change log](CHANGELOG.md), [license](LICENSE), and [contribution guidelines](CONTRIBUTING.md).
 
 ## Installation
 
