@@ -1,6 +1,10 @@
 CHANGE LOG
 ==========
 
+## 2.0.3 (2016-06-17)
+
+* Refactor in crafter
+
 ## 2.0.2 (2016-06-16)
 
 * Added tests
