@@ -65,7 +65,7 @@ class PHPCrafter implements CrafterInterface
     }
 
     /**
-     * @param string $name
+     * @param null|string $name
      *
      * @return $this
      */
@@ -77,7 +77,7 @@ class PHPCrafter implements CrafterInterface
     }
 
     /**
-     * @param array $author
+     * @param null|array $author
      *
      * @return $this
      */
@@ -89,7 +89,7 @@ class PHPCrafter implements CrafterInterface
     }
 
     /**
-     * @param string $destination
+     * @param null|string $destination
      *
      * @return $this
      */

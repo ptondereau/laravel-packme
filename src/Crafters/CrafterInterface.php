@@ -15,14 +15,14 @@ interface CrafterInterface
     public function craft();
 
     /**
-     * @param string $name
+     * @param null|string $name
      *
      * @return $this
      */
     public function setName($name);
 
     /**
-     * @param array $author
+     * @param null|array $author
      *
      * @return $this
      */
