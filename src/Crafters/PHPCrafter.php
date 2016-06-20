@@ -4,7 +4,7 @@ namespace Ptondereau\PackMe\Crafters;
 
 use ConstantNull\Backstubber\FileGenerator;
 use Illuminate\Support\Str;
-use Ptondereau\PackMe\Exception\CrafterException;
+use Ptondereau\PackMe\Package;
 use Symfony\Component\Filesystem\Filesystem;
 
 /**
@@ -13,35 +13,7 @@ use Symfony\Component\Filesystem\Filesystem;
 class PHPCrafter implements CrafterInterface
 {
     /**
-     * Package name.
-     *
-     * @var string
-     */
-    protected $name = null;
-
-    /**
-     * Author name.
-     *
-     * @var string
-     */
-    protected $author = null;
-
-    /**
-     * Path destination for all generated files.
-     *
-     * @var string
-     */
-    protected $destination = null;
-
-    /**
-     * Package's description.
-     *
-     * @var string
-     */
-    protected $description = '';
-
-    /**
-     * Stube file generator.
+     * Stub file generator.
      *
      * @var FileGenerator
      */
@@ -65,89 +37,27 @@ class PHPCrafter implements CrafterInterface
     }
 
     /**
-     * @param null|string $name
-     *
-     * @return $this
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * @param null|array $author
-     *
-     * @return $this
-     */
-    public function setAuthor(array $author)
-    {
-        $this->author = $author;
-
-        return $this;
-    }
-
-    /**
-     * @param null|string $destination
-     *
-     * @return $this
-     */
-    public function setDestination($destination)
-    {
-        $this->destination = $destination;
-
-        return $this;
-    }
-
-    /**
-     * @param string $description
-     *
-     * @return $this
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
      * Craft the application with parameters.
      *
+     * @param Package $package
      * @return mixed
      */
-    public function craft()
+    public function craft(Package $package)
     {
-        $this->verifyParameters();
-        $this->verifyApplicationDoesntExist(
-            $directory = ($this->destination) ? getcwd().'/'.$this->destination : getcwd()
-        );
-
-        $packageInfo = explode('/', $this->name);
-        $vendor = Str::studly($packageInfo[0]);
-        $package = Str::studly($packageInfo[1]);
-
         $stubPath = realpath(__DIR__.'/../stubs');
-        $this->filesystem->mirror($stubPath, $directory);
 
         // set delimiters
         $this->stubber->withDelimiters('{{', '}}');
 
         // set keywords
-        $this->stubber->setRaw('author', $this->author['name'].' <'.$this->author['email'].'>')
-            ->setRaw('name', $this->name)
-            ->setRaw('description', $this->description ?: '')
-            ->setRaw('vendor', $vendor)
-            ->setRaw('package', $package)
-            ->setRaw('authorName', $this->author['name'])
-            ->setRaw('authorEmail', $this->author['email'])
-            ->setRaw('config', Str::slug($package));
+        $this->stubber->setRaw($package->toArray());
+
+        $this->filesystem->mirror($stubPath, $package->getDestination());
 
         // array of all stub files
         $stubFiles = new \RecursiveIteratorIterator(
             new \RecursiveDirectoryIterator(
-                $directory,
+                $package->getDestination(),
                 \RecursiveDirectoryIterator::SKIP_DOTS
             )
         );
@@ -157,45 +67,13 @@ class PHPCrafter implements CrafterInterface
             $new = pathinfo($stub);
             $this->stubber->useStub($stub);
             if ($this->isConfigFile($new['basename'])) {
-                $this->stubber->generate($new['dirname'].'/'.Str::slug($package).'.php');
+                $this->stubber->generate($new['dirname'].'/'.Str::slug($package->getPackage()).'.php');
             } elseif ($this->isServiceProviderFile($new['basename'])) {
-                $this->stubber->generate($new['dirname'].'/'.$package.'ServiceProvider.php');
+                $this->stubber->generate($new['dirname'].'/'.$package->getPackage().'ServiceProvider.php');
             } else {
                 $this->stubber->generate($new['dirname'].'/'.$new['filename']);
             }
             $this->filesystem->remove($stub);
-        }
-    }
-
-    /**
-     * Verify all parameters presence (name, author, destination).
-     */
-    protected function verifyParameters()
-    {
-        if (null === $this->name) {
-            throw new CrafterException('Package name is not defined!');
-        }
-
-        if (null === $this->author) {
-            throw new CrafterException('Author is not defined!');
-        }
-
-        if (null === $this->destination) {
-            throw new CrafterException('Destination folder is not defined!');
-        }
-    }
-
-    /**
-     * Verify that the application does not already exist.
-     *
-     * @param string $directory
-     *
-     * @throws CrafterException
-     */
-    protected function verifyApplicationDoesntExist($directory)
-    {
-        if ((is_dir($directory) || is_file($directory)) && $directory != getcwd()) {
-            throw new CrafterException('Package already exists!');
         }
     }
 

@@ -3,6 +3,7 @@
 namespace Ptondereau\PackMe\Commands;
 
 use Ptondereau\PackMe\Crafters\CrafterInterface;
+use Ptondereau\PackMe\Package;
 use Symfony\Component\Console\Helper\HelperSet;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -39,18 +40,17 @@ class CreateCommand extends AbstractBaseCommand
         $output->writeln('<info>I need to know a little more about your future awesome laravel package...</info>');
         $output->writeln('');
 
-        $package = $this->askForPackageName();
-        $author = $this->askForAuthor();
-        $description = $this->askForDescription();
+        $package = new Package(
+            $this->askForPackageName(),
+            $this->askForAuthor(),
+            $dir
+        );
+        $package->setDescription($this->askForDescription());
 
         $output->writeln('');
         $output->writeln('<info>Crafting your laravel package...</info>');
 
-        $this->crafter->setAuthor($this->parseAuthorString($author))
-            ->setName($package)
-            ->setDestination($dir)
-            ->setDescription($description)
-            ->craft();
+        $this->crafter->craft($package);
 
         $output->writeln('');
         $output->writeln('<info>Successfully crafted!</info>');

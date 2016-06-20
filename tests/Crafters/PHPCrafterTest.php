@@ -5,13 +5,14 @@ namespace Ptondereau\Tests\PackMe\Crafters;
 use ConstantNull\Backstubber\FileGenerator;
 use Ptondereau\PackMe\Crafters\CrafterInterface;
 use Ptondereau\PackMe\Crafters\PHPCrafter;
-use Ptondereau\Tests\PackMe\TestCase;
+use Ptondereau\PackMe\Package;
+use Ptondereau\Tests\PackMe\AbstractTestCase;
 use Symfony\Component\Filesystem\Filesystem;
 
 /**
  * Class PHPCrafterTest.
  */
-class PHPCrafterTest extends TestCase
+class PHPCrafterTest extends AbstractTestCase
 {
     /**
      * @var Filesystem
@@ -38,31 +39,16 @@ class PHPCrafterTest extends TestCase
         $this->assertInstanceOf(CrafterInterface::class, $crafter);
     }
 
-    public function testSetter()
-    {
-        $crafter = new PHPCrafter($this->stubber, $this->fs);
-        $crafter->setDescription('test');
-        $crafter->setAuthor(['name' => 'John Smith', 'email' => 'john@smith.com']);
-        $crafter->setName('vendor/package');
-
-        $this->assertAttributeSame('test', 'description', $crafter);
-        $this->assertAttributeSame(['name' => 'John Smith', 'email' => 'john@smith.com'], 'author', $crafter);
-        $this->assertAttributeSame('vendor/package', 'name', $crafter);
-    }
-
     public function testCrafting()
     {
         if (is_dir(__DIR__.'/../output/test')) {
             $this->removeOutput();
         }
 
+        $package = new Package('vendor/package', 'John Smith <john@smith.com>', 'tests/output/test');
+        
         $crafter = new PHPCrafter($this->stubber, $this->fs);
-        $crafter->setDescription('test');
-        $crafter->setAuthor(['name' => 'John Smith', 'email' => 'john@smith.com']);
-        $crafter->setName('vendor/package');
-        $crafter->setDestination('tests/output/test');
-
-        $crafter->craft();
+        $crafter->craft($package);
 
         $outputpath = realpath(__DIR__.'/../output/test');
 
@@ -83,66 +69,6 @@ class PHPCrafterTest extends TestCase
         $this->assertFileExists($outputpath.'/README.md');
         $this->assertFileExists($outputpath.'/composer.json');
         $this->assertFileExists($outputpath.'/phpunit.xml.dist');
-
-        $this->removeOutput();
-    }
-
-    /**
-     * @expectedException  \Ptondereau\PackMe\Exception\CrafterException
-     * @expectedExceptionMessage Author is not defined!
-     */
-    public function testExceptionWhenAuthorIsWrong()
-    {
-        $crafter = new PHPCrafter($this->stubber, $this->fs);
-        $crafter->setDescription('test');
-        $crafter->setName('vendor/package');
-        $crafter->setDestination('tests/output/test');
-
-        $crafter->craft();
-    }
-
-    /**
-     * @expectedException  \Ptondereau\PackMe\Exception\CrafterException
-     * @expectedExceptionMessage Package name is not defined!
-     */
-    public function testExceptionWhenNameIsWrong()
-    {
-        $crafter = new PHPCrafter($this->stubber, $this->fs);
-
-        $crafter->craft();
-    }
-
-    /**
-     * @expectedException  \Ptondereau\PackMe\Exception\CrafterException
-     * @expectedExceptionMessage Destination folder is not defined!
-     */
-    public function testExceptionWhenDestinationIsWrong()
-    {
-        $crafter = new PHPCrafter($this->stubber, $this->fs);
-        $crafter->setDescription('test');
-        $crafter->setAuthor(['name' => 'John Smith', 'email' => 'john@smith.com']);
-        $crafter->setName('vendor/package');
-
-        $crafter->craft();
-    }
-
-    /**
-     * @expectedException  \Ptondereau\PackMe\Exception\CrafterException
-     * @expectedExceptionMessage Package already exists!
-     */
-    public function testExceptionWhenFolderAlreadyExists()
-    {
-        if (!is_dir(__DIR__.'/../output/test/')) {
-            mkdir(__DIR__.'/../output/test/', 0777);
-        }
-
-        $crafter = new PHPCrafter($this->stubber, $this->fs);
-        $crafter->setDescription('test');
-        $crafter->setAuthor(['name' => 'John Smith', 'email' => 'john@smith.com']);
-        $crafter->setName('vendor/package');
-        $crafter->setDestination('tests/output/test');
-
-        $crafter->craft();
 
         $this->removeOutput();
     }

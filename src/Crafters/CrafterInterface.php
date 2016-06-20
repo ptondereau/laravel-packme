@@ -2,6 +2,8 @@
 
 namespace Ptondereau\PackMe\Crafters;
 
+use Ptondereau\PackMe\Package;
+
 /**
  * Interface Crafter.
  */
@@ -10,35 +12,8 @@ interface CrafterInterface
     /**
      * Craft the application with parameters.
      *
+     * @param Package $package
      * @return mixed
      */
-    public function craft();
-
-    /**
-     * @param null|string $name
-     *
-     * @return $this
-     */
-    public function setName($name);
-
-    /**
-     * @param null|array $author
-     *
-     * @return $this
-     */
-    public function setAuthor(array $author);
-
-    /**
-     * @param string $destination
-     *
-     * @return $this
-     */
-    public function setDestination($destination);
-
-    /**
-     * @param string $description
-     *
-     * @return $this
-     */
-    public function setDescription($description);
+    public function craft(Package $package);
 }

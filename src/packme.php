@@ -16,7 +16,7 @@ use Silly\Edition\PhpDi\Application;
 /*
  * Application bootstrap.
  */
-$version = '2.0.2';
+$version = '2.0.4';
 
 $app = new Application('Laravel PackMe', $version);
 
@@ -28,7 +28,10 @@ $container->set(
     \Symfony\Component\Console\Helper\HelperSet::class,
     DI\object()->constructor(['question' => new \Symfony\Component\Console\Helper\QuestionHelper()])
 );
-$container->set(\Ptondereau\PackMe\Crafters\Crafter::class, DI\object(\Ptondereau\PackMe\Crafters\PHPCrafter::class));
+$container->set(
+    \Ptondereau\PackMe\Crafters\CrafterInterface::class,
+    DI\object(\Ptondereau\PackMe\Crafters\PHPCrafter::class)
+);
 
 /*
  * Create the package with user's answers.

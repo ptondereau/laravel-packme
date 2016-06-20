@@ -1,4 +1,4 @@
-{{ Package }}
+{{ package }}
 =================
 
 {{ package }} was created by, and is maintained by [{{ authorName }}](https://github.com/). Feel free to check out the [change log](CHANGELOG.md), [releases](https://github.com/ptondereau/laravel-packme/releases), [license](LICENSE), and [contribution guidelines](CONTRIBUTING.md).
