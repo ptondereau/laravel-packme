@@ -46,7 +46,7 @@ class PHPCrafterTest extends AbstractTestCase
         }
 
         $package = new Package('vendor/package', 'John Smith <john@smith.com>', 'tests/output/test');
-        
+
         $crafter = new PHPCrafter($this->stubber, $this->fs);
         $crafter->craft($package);
 

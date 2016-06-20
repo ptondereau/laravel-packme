@@ -3,9 +3,8 @@
 namespace Ptondereau\PackMe\Validators;
 
 /**
- * Class ValidatorException
+ * Class ValidatorException.
  */
 class ValidatorException extends \Exception
 {
-
 }

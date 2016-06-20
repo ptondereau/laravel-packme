@@ -13,6 +13,7 @@ interface CrafterInterface
      * Craft the application with parameters.
      *
      * @param Package $package
+     *
      * @return mixed
      */
     public function craft(Package $package);

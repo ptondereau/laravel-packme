@@ -6,7 +6,7 @@ use Illuminate\Support\Str;
 use Ptondereau\PackMe\Validators\Validator;
 
 /**
- * Class Package
+ * Class Package.
  */
 class Package
 {
@@ -32,7 +32,7 @@ class Package
     protected $vendor;
 
     /**
-     * Full author string. (e.g: John Smith <john@example.com>)
+     * Full author string. (e.g: John Smith <john@example.com>).
      *
      * @var string
      */
@@ -106,13 +106,13 @@ class Package
         $this->package = Str::studly($packageInfo[1]);
 
         return [
-            'name' => $this->name,
+            'name'        => $this->name,
             'description' => $this->description ?: '',
-            'vendor' => $this->vendor,
-            'package' => $this->package,
-            'authorName' => $this->authorName,
+            'vendor'      => $this->vendor,
+            'package'     => $this->package,
+            'authorName'  => $this->authorName,
             'authorEmail' => $this->email,
-            'config' => Str::slug($this->package)
+            'config'      => Str::slug($this->package),
         ];
     }
 
@@ -188,7 +188,7 @@ class Package
         if (!$this->email && $this->author) {
             $this->parseAuthor($this->author);
         }
-        
+
         return $this->email;
     }
 

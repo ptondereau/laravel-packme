@@ -5,7 +5,6 @@ namespace Ptondereau\Tests\PackMe\Commands;
 use Ptondereau\PackMe\Commands\CreateCommand;
 use Ptondereau\PackMe\Crafters\PHPCrafter;
 use Ptondereau\Tests\PackMe\AbstractTestCase;
-use Ptondereau\Tests\PackMe\TestCase;
 use Symfony\Component\Console\Helper\HelperSet;
 
 /**

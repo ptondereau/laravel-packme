@@ -6,7 +6,7 @@ use Ptondereau\PackMe\Package;
 use Ptondereau\PackMe\Validators\Validator;
 
 /**
- * Class PackageTest
+ * Class PackageTest.
  */
 class PackageTest extends AbstractTestCase
 {
@@ -51,13 +51,13 @@ class PackageTest extends AbstractTestCase
 
         $result = $package->toArray();
         $expected = [
-            'name' => 'vendor/package',
+            'name'        => 'vendor/package',
             'description' => '',
-            'vendor' => 'Vendor',
-            'package' => 'Package',
-            'authorName' => 'John Smith',
+            'vendor'      => 'Vendor',
+            'package'     => 'Package',
+            'authorName'  => 'John Smith',
             'authorEmail' => 'john@smith.com',
-            'config' => 'package'
+            'config'      => 'package',
         ];
 
         $this->assertSame($expected, $result);
