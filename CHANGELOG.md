@@ -1,6 +1,11 @@
 CHANGE LOG
 ==========
 
+## 2.0.4 (2016-06-20)
+
+* Add validation class
+* Fix error at startup
+
 ## 2.0.3 (2016-06-17)
 
 * Refactor in crafter
