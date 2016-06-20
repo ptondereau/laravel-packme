@@ -18,21 +18,22 @@ class Validator
     protected $checks = [
         ApplicationExist::class,
         GoodName::class,
-        GoodAuthor::class
+        GoodAuthor::class,
     ];
 
     /**
      * Ensure all Package's parameters are good.
      *
      * @param Package $package
+     *
      * @return bool
      */
     public function verify(Package $package)
     {
         foreach ($this->checks as $class) {
-            (new $class)->verify($package);
+            (new $class())->verify($package);
         }
-        
+
         return true;
     }
 }

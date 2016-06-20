@@ -6,7 +6,7 @@ use Ptondereau\PackMe\Package;
 use Ptondereau\PackMe\Validators\Validator;
 
 /**
- * Class ValidatorTest
+ * Class ValidatorTest.
  */
 class ValidatorTest extends AbstractTestCase
 {

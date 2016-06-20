@@ -6,7 +6,7 @@ use Ptondereau\PackMe\Package;
 use Ptondereau\PackMe\Validators\ValidatorException;
 
 /**
- * Class GoodAuthor
+ * Class GoodAuthor.
  */
 class GoodAuthor implements CheckInterface
 {
@@ -14,8 +14,10 @@ class GoodAuthor implements CheckInterface
      * Make a verification.
      *
      * @param Package $package
-     * @return mixed|void
+     *
      * @throws ValidatorException
+     *
+     * @return mixed|void
      */
     public function verify(Package $package)
     {

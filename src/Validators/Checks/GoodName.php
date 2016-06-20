@@ -6,7 +6,7 @@ use Ptondereau\PackMe\Package;
 use Ptondereau\PackMe\Validators\ValidatorException;
 
 /**
- * Class GoodName
+ * Class GoodName.
  */
 class GoodName implements CheckInterface
 {
@@ -14,8 +14,10 @@ class GoodName implements CheckInterface
      * Make a verification.
      *
      * @param Package $package
-     * @return void
+     *
      * @throws ValidatorException
+     *
+     * @return void
      */
     public function verify(Package $package)
     {
