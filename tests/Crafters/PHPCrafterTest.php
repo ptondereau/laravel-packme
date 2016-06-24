@@ -56,7 +56,7 @@ class PHPCrafterTest extends AbstractTestCase
         $this->assertFileExists($outputpath.'/src/PackageServiceProvider.php');
         $this->assertFileExists($outputpath.'/src/DummyClass.php');
         $this->assertFileExists($outputpath.'/src/Facades/DummyClass.php');
-        $this->assertFileExists($outputpath.'/tests/TestCase.php');
+        $this->assertFileExists($outputpath.'/tests/AbstractTestCase.php');
         $this->assertFileExists($outputpath.'/tests/ServiceProviderTest.php');
         $this->assertFileExists($outputpath.'/tests/DummyClassTest.php');
         $this->assertFileExists($outputpath.'/tests/Facades/DummyClassTest.php');
