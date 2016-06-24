@@ -16,7 +16,7 @@ use Silly\Edition\PhpDi\Application;
 /*
  * Application bootstrap.
  */
-$version = '2.0.4';
+$version = '2.0.6';
 
 $app = new Application('Laravel PackMe', $version);
 

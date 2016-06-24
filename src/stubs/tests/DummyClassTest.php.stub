@@ -17,7 +17,7 @@ use {{ vendor}}\{{ package }}\DummyClass;
  *
  * @author {{ author }}
  */
-class DummyClassTest extends TestCase
+class DummyClassTest extends AbstractTestCase
 {
     public function testConstruct()
     {

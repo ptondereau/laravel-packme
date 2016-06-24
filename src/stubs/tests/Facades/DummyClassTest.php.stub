@@ -3,14 +3,14 @@
 namespace {{ vendor }}\Tests\{{ package }}\Facades;
 
 use GrahamCampbell\TestBenchCore\FacadeTrait;
-use {{ vendor }}\Tests\{{ package }}\TestCase;
+use {{ vendor }}\Tests\{{ package }}\AbstractTestCase;
 
 /**
  * This is the UpsLocatorTest facade test class.
  *
  * @author {{ author }}
  */
-class DummyClassTest extends TestCase
+class DummyClassTest extends AbstractTestCase
 {
     use FacadeTrait;
     /**

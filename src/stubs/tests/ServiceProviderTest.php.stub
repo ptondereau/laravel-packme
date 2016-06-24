@@ -18,7 +18,7 @@ use {{ vendor }}\{{ package }}\DummyClass;
  *
  * @author {{ author }}
  */
-class ServiceProviderTest extends TestCase
+class ServiceProviderTest extends AbstractTestCase
 {
     use ServiceProviderTrait;
 

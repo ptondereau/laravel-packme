@@ -13,7 +13,7 @@ namespace {{ vendor }}\Tests\{{ package }};
 use GrahamCampbell\TestBench\AbstractPackageTestCase;
 use {{ vendor }}\{{ package }}\YourPackageServiceProvider;
 
-abstract class TestCase extends AbstractPackageTestCase
+abstract class AbstractTestCase extends AbstractPackageTestCase
 {
     /**
      * Get the service provider class.
