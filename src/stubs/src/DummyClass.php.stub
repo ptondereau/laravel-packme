@@ -8,11 +8,7 @@
  * file that was distributed with this source code.
  */
 
-<<<<<<< HEAD:src/stubs/src/DummyClass.php.stub
 namespace {{ vendor }}\{{ package }};
-=======
-namespace YourVendor\YourPackage;
->>>>>>> aca9c83f04fc0915dd13102798ad753d686b60f7:src/DummyClass.php
 
 use Illuminate\Contracts\Config\Repository;
 
