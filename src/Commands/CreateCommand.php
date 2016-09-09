@@ -32,7 +32,7 @@ class CreateCommand extends AbstractBaseCommand
         $this->crafter = $crafter;
     }
 
-    public function handle($dir, InputInterface $input, OutputInterface $output)
+    public function __invoke($dir, InputInterface $input, OutputInterface $output)
     {
         $this->input = $input;
         $this->output = $output;

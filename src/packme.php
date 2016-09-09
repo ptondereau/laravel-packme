@@ -16,7 +16,7 @@ use Silly\Edition\PhpDi\Application;
 /*
  * Application bootstrap.
  */
-$version = '2.0.6';
+$version = '2.0.8';
 
 $app = new Application('Laravel PackMe', $version);
 
@@ -36,7 +36,7 @@ $container->set(
 /*
  * Create the package with user's answers.
  */
-$app->command('create [dir]', [CreateCommand::class, 'handle'])
+$app->command('create [dir]', CreateCommand::class)
     ->descriptions('Create your package with a given directory', ['dir' => 'Your directory name']);
 
 /*
