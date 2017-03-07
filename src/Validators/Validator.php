@@ -4,7 +4,6 @@ namespace Ptondereau\PackMe\Validators;
 
 use Ptondereau\PackMe\Package;
 use Ptondereau\PackMe\Validators\Checks\ApplicationExist;
-use Ptondereau\PackMe\Validators\Checks\CheckInterface;
 use Ptondereau\PackMe\Validators\Checks\GoodAuthor;
 use Ptondereau\PackMe\Validators\Checks\GoodName;
 
