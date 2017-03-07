@@ -13,7 +13,7 @@ class Validator
     /**
      * List of checks.
      *
-     * @var CheckInterface[]
+     * @var string[]
      */
     protected $checks = [
         ApplicationExist::class,

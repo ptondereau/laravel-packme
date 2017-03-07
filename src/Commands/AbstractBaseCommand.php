@@ -42,8 +42,8 @@ abstract class AbstractBaseCommand
     /**
      * @param string   $question
      * @param \Closure $validator
-     * @param null     $attempts
-     * @param null     $default
+     * @param null|int     $attempts
+     * @param null|string     $default
      *
      * @return string
      */
@@ -60,7 +60,7 @@ abstract class AbstractBaseCommand
 
     /**
      * @param string $question
-     * @param null   $default
+     * @param null|string   $default
      *
      * @return string
      */

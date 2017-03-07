@@ -20,7 +20,7 @@ class ApplicationExist implements CheckInterface
     {
         $path = $package->getDestination();
 
-        if (is_dir($path) || is_file($path) || $path == getcwd()) {
+        if (is_dir($path) || is_file($path) || $path === getcwd()) {
             throw new ValidatorException('Package already exists!');
         }
     }

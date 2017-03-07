@@ -41,7 +41,7 @@ class PHPCrafter implements CrafterInterface
      *
      * @param Package $package
      *
-     * @return mixed
+     * @return void
      */
     public function craft(Package $package)
     {

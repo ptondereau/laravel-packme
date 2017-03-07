@@ -134,13 +134,14 @@ class CreateCommand extends AbstractBaseCommand
      */
     private function parseAuthorString($author)
     {
-        if (preg_match('/^(?P<name>[- \.,\p{L}\p{N}\'’]+) <(?P<email>.+?)>$/u', $author, $match)) {
-            if ($this->isValidEmail($match['email'])) {
-                return [
-                    'name'  => trim($match['name']),
-                    'email' => $match['email'],
-                ];
-            }
+        if (
+            preg_match('/^(?P<name>[- \.,\p{L}\p{N}\'’]+) <(?P<email>.+?)>$/u', $author, $match)
+            && $this->isValidEmail($match['email'])
+        ) {
+            return [
+                'name'  => trim($match['name']),
+                'email' => $match['email'],
+            ];
         }
         throw new \InvalidArgumentException(
             'Invalid author string.  Must be in the format: '.
