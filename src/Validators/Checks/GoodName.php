@@ -21,7 +21,7 @@ class GoodName implements CheckInterface
      */
     public function verify(Package $package)
     {
-        if (! $package->getName() || empty($package->getName())) {
+        if (!$package->getName() || empty($package->getName())) {
             throw new ValidatorException('Package name is not defined!');
         }
     }

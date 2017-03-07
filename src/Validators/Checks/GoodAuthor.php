@@ -21,7 +21,7 @@ class GoodAuthor implements CheckInterface
      */
     public function verify(Package $package)
     {
-        if (! $package->getAuthor() || empty($package->getAuthor())) {
+        if (!$package->getAuthor() || empty($package->getAuthor())) {
             throw new ValidatorException('Author is not defined!');
         }
     }
