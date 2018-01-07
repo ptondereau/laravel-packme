@@ -143,6 +143,7 @@ class CreateCommand extends AbstractBaseCommand
                 'email' => $match['email'],
             ];
         }
+
         throw new \InvalidArgumentException(
             'Invalid author string.  Must be in the format: '.
             'John Smith <john@example.com>'
