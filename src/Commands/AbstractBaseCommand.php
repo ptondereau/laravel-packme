@@ -22,7 +22,7 @@ abstract class AbstractBaseCommand
     /**
      * @var OutputInterface
      */
-    protected $output;
+    private $output;
 
     /**
      * @var HelperSet
